@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-6">
+    <h2 class="title">Event Edit</h2>
+
+    <form method="POST" action="{{ url_for('edit_event', id=event.id) }}">
+        {{ form.csrf_token }}
+
+        {% for field in form if field.name != 'csrf_token' %}
+        <div class="form-group">
+            {{ field.label(class='control=label') }}
+            {{ field(class='form-control') }}
+        </div>
+        {% endfor %}
+
+        <input type="submit" value="Save" class="btn btn-success">
+    </form>
+
+</div>
+
+{% endblock %}

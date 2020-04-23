@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul class=flashes>
+  {% for message in messages %}
+  <li>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+<div class="formwrapper">
+  <h2 class="title">REGISTER</h2>
+
+  <form method="POST" action="/create_user">
+    {{ form.csrf_token }}
+    <div class="form-field">
+      {{ form.email.label }}
+      {{ form.email }}
+    </div>
+    <div class="form-field">
+      {{ form.name.label }}
+      {{ form.name }}
+    </div>
+    <div class="form-field">
+      {{ form.password.label }}
+      {{ form.password }}
+    </div>
+    <div class="form-field">
+      {{ form.password2.label }}
+      {{ form.password2 }}
+    </div>
+    <a href="{{ url_for('login_page') }}">Login</a>
+    <input type="submit" value="Register">
+  </form>
+
+</div>
+
+{% endblock %}

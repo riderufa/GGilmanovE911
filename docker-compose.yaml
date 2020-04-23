@@ -1,0 +1,25 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=event_db
+  app:
+    build: .
+    ports:
+      - 5000:5000
+    environment:
+      - DATABASE_URL=postgresql+psycopg2://postgres:docker@db:5432/event_db
+      - SECRET_KEY='kajsdkjasfasdkfjahsdkjh'
+      - PORT=8081
+    links:
+      - db
+    depends_on:
+      - db
+    # command: python manage.py db upgrade
+    entrypoint: ["./entry.sh"]

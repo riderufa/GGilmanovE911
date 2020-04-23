@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-6 mt-4">
+
+    <ul>
+        <li>ID {{ event.id }}</li>
+        <li>AUTHOR {{ event.author }}</li>
+        <li>DATE_BEGIN {{ event.date_begin }}</li>
+        <li>DATE_END {{ event.date_end }}</li>
+        <li>THEME {{ event.theme }}</li>
+        <li>DESCRIPTION {{ event.description }}</li>
+    </ul>
+
+    <a href="{{ url_for('edit_event', id=event.id) }}" class="btn btn-success">Edit</a>
+    <a href="{{ url_for('delete_event', id=event.id) }} " class="btn btn-danger">Delete</a>
+</div>
+
+{% endblock %}

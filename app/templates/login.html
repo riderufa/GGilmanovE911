@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="formwrapper">
+    <h2 class="title">LOGIN</h2>
+
+    <form method="POST" action="/login">
+        {{ form.csrf_token }}
+
+        <div class="form-field">
+            {{ form.email.label }}
+            {{ form.email }}
+        </div>
+
+        <div class="form-field">
+            {{ form.password.label }}
+            {{ form.password }}
+        </div>
+
+        <a href="{{ url_for('create_user') }}">Register</a>
+        <input type="submit" value="Login">
+    </form>
+
+</div>
+
+{% endblock %}
